@@ -1,13 +1,13 @@
-export const responseMessages = {
-    userMessages : {
-         emailAlreadyExists : 'user with this Emai id is already Exists!',
+export const messages = {
+    user : {
+         emailAlreadyExists : 'user with this Email id is already Exists!',
          userRegistered : 'User registered successfully!',
          invalidCredentials: "Invalid Credentials!",
          loginSuccessfully: 'User Login Successfully!',
          logoutSuccessfully: 'User Logout Successfully!'
     },
 
-    bookMessages: {
+    book: {
         booksNotFound: 'Books not found!',
         bookNotFound: 'Book not found!',
         bookCreatedSuccessfully: 'Book created Successfully!',
@@ -15,11 +15,13 @@ export const responseMessages = {
         bookFetchedSuccessfully: "Book Fetched Succesfully!",
         bookUpdatedSuccessfully: 'Book Updated Successfully!',
         bookDeletedSuccessfully: 'Book Deleted Successfully!'
-           
     },
 
-    serverMessages: {
-        unKnownError: 'Unknown Error',
+    authorizatioHeader: {
+         authorizationError: 'Authorization header is missing!'
+    },
+
+    server: {
         internalServerError: 'Internal Server Error'
     }
 

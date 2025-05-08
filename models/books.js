@@ -6,12 +6,12 @@ const bookSchema = sequelize.define(
   {
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "users",
-        key: "id",
-      },
-      onDelete: "CASCADE",
+        allowNull: false,
+        references: {
+          model: "users",
+          key: "id",
+        },
+        onDelete: "CASCADE",
     },
 
     name: {

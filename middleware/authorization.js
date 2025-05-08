@@ -1,4 +1,6 @@
 import jwt from "jsonwebtoken";
+import { messages } from "../constants/errorMessages.js";
+const {authorizatioHeader,server} = messages;
 
 const authorization = (req, res, next) => {
   let token =
@@ -9,7 +11,7 @@ const authorization = (req, res, next) => {
   if (!token) {
     return res
       .status(401)
-      .json({ success: false, message: "Authorization token is required!" });
+      .json({ success: false, message: authorizatioHeader.authorizationError });
   }
 
   if (token.startsWith("Bearer")) {
@@ -21,7 +23,7 @@ const authorization = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (error) {
-    return res.status(401).json({ success: false, message: "Invalid token!" });
+    return res.status(500).json({ success: false, message: server.internalServerError});
   }
 };
 

@@ -1,8 +1,9 @@
 import sequelize from "../config/dbConnect.js";
 import { DataTypes } from "sequelize";
+import bcrypt from "bcryptjs";
 
 const userSchema = sequelize.define(
-  "User",
+  "auth",
   {
     name: {
       type: DataTypes.STRING,
@@ -36,8 +37,21 @@ const userSchema = sequelize.define(
   },
   {
     timestamps: true,
-    tableName: "users",
+    tableName: "auths",
+    hooks: {
+      beforeCreate: async (user) => {
+        if (user.password) {
+          user.password = await bcrypt.hash(user.password, 10); // direct salt rounds
+        }
+      },
+      beforeUpdate: async (user) => {
+        if (user.changed("password")) {
+          user.password = await bcrypt.hash(user.password, 10);
+        }
+      },
+    },
   }
+
 );
 
 (async () => {
